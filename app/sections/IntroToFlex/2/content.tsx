@@ -79,8 +79,8 @@ export default function Content2() {
                 <div className="mx-2 flex flex-col gap-1 ml-6">
                     <p>Padding: 24px;</p>
                     <p>Display: flex;</p>
-                    <input className="w-full bg-primary-foreground text-black focus:outline-none" type="text" onChangeCapture={(e) => setLine1(e.currentTarget.value)} />
-                    <input className="w-full bg-primary-foreground text-black focus:outline-none" type="text" onChangeCapture={(e) => setLine2(e.currentTarget.value)} />
+                    <input className="w-1/3 min-w-48 text-foreground bg-transparent border-b-2 border-dashed border-b-foreground focus:outline-none" type="text" onChangeCapture={(e) => setLine1(e.currentTarget.value)} />
+                    <input className="w-1/3 min-w-48 border-b-2 border-dashed border-b-foreground bg-transparent text-foreground focus:outline-none" type="text" onChangeCapture={(e) => setLine2(e.currentTarget.value)} />
                 </div>
                 <p>&#125;</p>
             </Card>

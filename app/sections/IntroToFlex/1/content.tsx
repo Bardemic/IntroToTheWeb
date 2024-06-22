@@ -58,7 +58,7 @@ export default function Content1() {
                 <div className="mx-2 ml-6">
                     <p>Padding: 24px;</p>
                     <p>Display: flex;</p>
-                    <input className="w-full bg-primary-foreground text-black focus:outline-none" type="text" onChangeCapture={(e) => codeLineChange(e.currentTarget.value)} />
+                    <input className="w-1/3 min-w-48 border-b-2 border-dashed border-b-foreground bg-transparent text-foreground focus:outline-none" type="text" onChangeCapture={(e) => codeLineChange(e.currentTarget.value)} />
                 </div>
                 {!completed ? <p>&#125;</p> : <></>}
             </Card>
