@@ -21,6 +21,7 @@ import { split } from "postcss/lib/list"
 
 export default function Content1() {
     const [code, setCode] = useState<React.CSSProperties>({})
+    const [completed, setCompleted] = useState(false)
 
 
     function codeLineChange(input: string) {
@@ -28,11 +29,15 @@ export default function Content1() {
     }
 
     const parseStyleString = (styleStr: string): React.CSSProperties => {
+        styleStr = styleStr.toLowerCase()
         return styleStr.split(';').reduce((acc, style) => {
           if (style.trim()) {
             const [key, value] = style.split(':');
             if (key && value) {
               (acc as any)[key.trim()] = value.trim();
+              if(key == 'justify-content' && value == ' center') {
+                setCompleted(true)
+              }
             }
           }
           return acc;
@@ -40,27 +45,35 @@ export default function Content1() {
       };
 
 
-    return ( <main className="p-4 grid grid-cols-2 grid-rows-2 gap-3 w-full h-full">
-        <Card>
-            <CardHeader>
-                Test
-            </CardHeader>
-        </Card>
-        <Card className="row-start-2 bg-secondary">
-            <p>#box &#123;</p>
-            <div className="mx-2 ml-6">
-                <p>Display: flex;</p>
-                <input className="w-full bg-primary-foreground focus:outline-none" type="text" onChangeCapture={(e) => codeLineChange(e.currentTarget.value)} />
-            </div>
-            <p>&#125;</p>
-        </Card>
-        <Card style={code} className={`row-span-2 flex`}>
-            <CardHeader>
-                <Card className="border-primary border-2 flex h-24 w-24 items-center justify-center">
-                    Move Me
-                </Card>
-            </CardHeader>
-        </Card>
-      </main>
+    return ( 
+    <div className="flex h-full w-full flex-col">
+        <main className="p-4 grid grid-cols-2 grid-rows-2 gap-3 w-full flex-grow">
+            <Card>
+                <CardHeader>
+                    Test
+                </CardHeader>
+            </Card>
+            <Card className="row-start-2 bg-secondary p-2">
+                <p>#container &#123;</p>
+                <div className="mx-2 ml-6">
+                    <p>Padding: 8px;</p>
+                    <p>Display: flex;</p>
+                    <input className="w-full bg-primary-foreground text-black focus:outline-none" type="text" onChangeCapture={(e) => codeLineChange(e.currentTarget.value)} />
+                </div>
+                {!completed ? <p>&#125;</p> : <></>}
+            </Card>
+            <Card style={code} className={`row-span-2 flex bg-primary`}>
+                <CardHeader>
+                    <Card className="border-primary border-2 flex h-24 w-24 items-center justify-center">
+                        Move Me
+                    </Card>
+                </CardHeader>
+            </Card>
+          </main>
+          <footer className="grid grid-cols-2 gap-32 w-full p-2">
+          <Button variant="destructive">Previous</Button>
+          {completed ? <Button>Next</Button> : <Button variant='outline' disabled>Next</Button>}
+        </footer>
+    </div>
     )
 }

@@ -10,17 +10,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import AuthButton from "@/components/AuthButton";
-
+import Header from "@/components/Header";
 
 
 export default function Home() {
   if(true) return (
     <div className="flex min-h-screen bg-background w-full items-center flex-col gap-2">
-      <header className="w-full bg-background text-muted-foreground drop-shadow px-6 py-3 flex justify-between items-center">
-        <div>Intro/To/The/Web</div>
-        <AuthButton></AuthButton>
-      </header>
+      <Header></Header>
       <div className="flex flex-col items-center justify-center text-foreground text-2xl mt-16">
         <h2>Welcome to your</h2>
         <h1 className="text-5xl font-bold">Intro/To/The/Web</h1>
