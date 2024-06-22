@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 
 import { Card, CardContent } from "@/components/ui/card"
@@ -22,7 +23,7 @@ export default function Home() {
         <h1 className="text-5xl font-bold">Intro/To/The/Web</h1>
       </div>
       <h3 className="mt-4 text-foreground font-light">Get started with the building blocks of the web: HTML and CSS!</h3>
-      <Button className="mt-4">Get Started</Button>
+      <Button className="mt-4" asChild><Link href='/sections'>Get Started</Link></Button>
       <Carousel className="w-1/2 mt-24">
         <CarouselContent>
         <CarouselItem className="md:basis-1/2 lg:basis-1/3">

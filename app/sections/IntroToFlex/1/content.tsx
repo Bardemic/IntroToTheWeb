@@ -62,13 +62,22 @@ export default function Content1() {
                 </div>
                 {!completed ? <p>&#125;</p> : <></>}
             </Card>
-            <Card style={code} className={`row-span-2 flex bg-primary`}>
-                <CardHeader>
+            <div className="relative row-span-2">
+                <Card className="w-full h-full bg-primary flex justify-center">
+                    <CardHeader>
+                    <Card className="flex h-24 w-24 items-center justify-center bg-transparent border-dotted border-4 text-center">
+                        over here
+                    </Card>
+                    </CardHeader>
+                </Card>
+                <Card style={code} className={`row-span-2 flex bg-transparent absolute top-0 left-0 w-full h-full`}>
+                    <CardHeader>
                     <Card className="border-primary border-2 flex h-24 w-24 items-center justify-center">
                         Move Me
                     </Card>
-                </CardHeader>
-            </Card>
+                    </CardHeader>
+                </Card>
+            </div>
           </main>
           <footer className="grid grid-cols-2 gap-32 w-full p-2">
           <Button variant="destructive">Previous</Button>
