@@ -54,8 +54,7 @@ export default function Login({
           .insert([
             { 
               id: authUser.user.id,
-              email: authUser.user.email,
-              IntroToFlex: 0
+              IntroToFlex: 1
             }
           ])
           .select()
