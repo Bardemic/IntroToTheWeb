@@ -36,7 +36,7 @@ export default function Login({
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    const {data: authUser, error: authError } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -44,11 +44,24 @@ export default function Login({
       },
     });
 
-    if (error) {
+    if (authError) {
       return redirect("/login?message=Could not authenticate user");
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    if(authUser.user) {
+      await supabase
+          .from('userData')
+          .insert([
+            { 
+              id: authUser.user.id,
+              email: authUser.user.email,
+              IntroToFlex: 0
+            }
+          ])
+          .select()
+    }
+
+    return redirect("/login?message=Sign In");
   };
 
   return (

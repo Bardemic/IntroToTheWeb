@@ -79,7 +79,7 @@ export default function Content1() {
         <main className="p-4 grid grid-cols-2 grid-rows-2 gap-3 w-full flex-grow">
             <Card>
                 <CardHeader>
-                    Test
+                    There are several different ways to organize a flexbox container. The first is 'Justify-Content'. Some options include "Start", "Center", and "End". you will be using one of these in order to get the solid to the dotted box.
                 </CardHeader>
             </Card>
             <Card className="row-start-2 bg-secondary p-2">

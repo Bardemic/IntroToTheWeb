@@ -92,7 +92,7 @@ export default function Content2() {
         <main className="p-4 grid grid-cols-2 grid-rows-2 gap-3 w-full flex-grow">
             <Card>
                 <CardHeader>
-                    Test
+                    Another CSS style for flexboxes is "align-items", which is similar to "justify-content", but being vertical rather than horizontal. The previous "start, center, end" tags would work here, so figure out how to get the solid box to the center in two lines.
                 </CardHeader>
             </Card>
             <Card className="row-start-2 bg-secondary p-2">
