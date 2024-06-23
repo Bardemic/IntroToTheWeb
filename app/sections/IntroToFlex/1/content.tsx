@@ -14,34 +14,42 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { split } from "postcss/lib/list"
+import sortObject from "../../sortObject"
 
 
 
 export default function Content1() {
     const [code, setCode] = useState<React.CSSProperties>({})
-    const [completed, setCompleted] = useState(false)
+    const [matching, setMatching] = useState(false)
+    const [line1, setline1] = useState('')
+    const styles = {'justify-content': 'center'}
 
 
-    function codeLineChange(input: string) {
-        setCode(parseStyleString(input))
+    function codeLineChange() {
+        const writtenStyles = parseStyleString(line1)
+        setCode(writtenStyles)
+        console.log(sortObject(writtenStyles), sortObject(styles))
+        console.log((sortObject(writtenStyles)) == sortObject(styles))
+        if(sortObject(writtenStyles) == sortObject(styles)) setMatching(true)
     }
+    useEffect(() => {
+        codeLineChange()
+    }, [line1])
 
-    const parseStyleString = (styleStr: string): React.CSSProperties => {
-        styleStr = styleStr.toLowerCase()
-        return styleStr.split(';').reduce((acc, style) => {
+    const parseStyleString = (styleStr1: string): React.CSSProperties => {
+        styleStr1 = styleStr1.toLowerCase()
+        const css1 = styleStr1.split(';').reduce((acc, style) => {
           if (style.trim()) {
             const [key, value] = style.split(':');
             if (key && value) {
               (acc as any)[key.trim()] = value.trim();
-              if(key == 'justify-content' && value == ' center') {
-                setCompleted(true)
-              }
             }
           }
           return acc;
         }, {} as React.CSSProperties);
+          return {...css1}
       };
 
 
@@ -58,9 +66,8 @@ export default function Content1() {
                 <div className="mx-2 ml-6">
                     <p>Padding: 24px;</p>
                     <p>Display: flex;</p>
-                    <input className="w-1/3 min-w-48 border-b-2 border-dashed border-b-foreground bg-transparent text-foreground focus:outline-none" type="text" onChangeCapture={(e) => codeLineChange(e.currentTarget.value)} />
+                    <input className="w-1/3 min-w-48 border-b-2 border-dashed border-b-foreground bg-transparent text-foreground focus:outline-none" type="text" onChangeCapture={(e) => setline1(e.currentTarget.value)} />
                 </div>
-                {!completed ? <p>&#125;</p> : <></>}
             </Card>
             <div className="relative row-span-2">
                 <Card className="w-full h-full bg-primary flex justify-center">
@@ -81,7 +88,7 @@ export default function Content1() {
           </main>
           <footer className="grid grid-cols-2 gap-32 w-full p-2">
           <Button variant="destructive">Previous</Button>
-          {completed ? <Button>Next</Button> : <Button variant='outline' disabled>Next</Button>}
+          {matching ? <Button>Next</Button> : <Button variant='outline' disabled>Next</Button>}
         </footer>
     </div>
     )
