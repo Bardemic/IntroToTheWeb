@@ -17,6 +17,9 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import React, { useEffect, useState } from "react"
 import { split } from "postcss/lib/list"
+import Footer from "../Footer"
+import getCompleted from "../../getCompleted"
+import updateCompleted from "../../updatedCompleted"
 
 
 
@@ -26,6 +29,25 @@ export default function Content2() {
     const [line2, setLine2] = useState('')
     const styles = {'align-items': 'center', 'justify-content': 'center'}
     const [matching, setMatching] = useState(false)
+    const pageNumber = 2;
+
+    const [unlocked, setUnlocked] = useState(0)
+
+    useEffect(() => {
+        const getData = async () => {
+            const data = await getCompleted()
+            setUnlocked(data)
+        }
+        getData()
+    }, [])
+
+    useEffect(() => {
+        if(pageNumber == unlocked + 1) {
+            updateCompleted(unlocked + 1)
+            setUnlocked(unlocked + 1)
+        }
+    }, [matching])
+
 
 
     function codeLineChange() {
@@ -100,10 +122,7 @@ export default function Content2() {
                 </Card>
             </div>
           </main>
-          <footer className="grid grid-cols-2 gap-32 w-full p-2">
-          <Button variant="destructive">Previous</Button>
-          {matching ? <Button>Next</Button> : <Button variant='outline' disabled>Next</Button>}
-        </footer>
+          <Footer pageNumber={pageNumber} allowed={unlocked}></Footer>
     </div>
     )
 }

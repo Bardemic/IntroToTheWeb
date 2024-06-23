@@ -1,14 +1,16 @@
-import AuthButton from "@/components/AuthButton"
+
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Header from "@/components/Header"
 
 
 
+
 export default function Test1() {
 
+
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center min-h-screen">
             <Header></Header>
             <main className="flex flex-col gap-3 items-center p-8 flex-wrap max-w-1/2 min-w-1/2">
                 <h1 className="text-3xl font-bold text-center">Welcome to Intro To Flex!</h1>

@@ -4,6 +4,7 @@
 import AuthButton from "@/components/AuthButton"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import Footer from "../Footer"
 
 import {
     Card,
@@ -17,6 +18,8 @@ import { Textarea } from "@/components/ui/textarea"
 import React, { useState, useEffect } from "react"
 import { split } from "postcss/lib/list"
 import sortObject from "../../sortObject"
+import getCompleted from "../../getCompleted"
+import updateCompleted from "../../updatedCompleted"
 
 
 
@@ -25,6 +28,24 @@ export default function Content1() {
     const [matching, setMatching] = useState(false)
     const [line1, setline1] = useState('')
     const styles = {'justify-content': 'center'}
+    const pageNumber = 1;
+
+    const [unlocked, setUnlocked] = useState(0)
+
+    useEffect(() => {
+        const getData = async () => {
+            const data = await getCompleted()
+            setUnlocked(data)
+        }
+        getData()
+    }, [])
+
+    useEffect(() => {
+        if(pageNumber == unlocked + 1) {
+            updateCompleted(unlocked + 1)
+            setUnlocked(unlocked + 1)
+        }
+    }, [matching])
 
 
     function codeLineChange() {
@@ -86,10 +107,7 @@ export default function Content1() {
                 </Card>
             </div>
           </main>
-          <footer className="grid grid-cols-2 gap-32 w-full p-2">
-          <Button variant="destructive">Previous</Button>
-          {matching ? <Button>Next</Button> : <Button variant='outline' disabled>Next</Button>}
-        </footer>
+          <Footer pageNumber={pageNumber} allowed={unlocked}></Footer>
     </div>
     )
 }

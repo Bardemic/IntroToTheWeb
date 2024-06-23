@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea"
 import Content3 from "./content"
 
 
-export default function Test1() {
+export default function Page3() {
     return (
     <div className="flex flex-col items-center h-screen">
         <Header></Header>

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Header from "@/components/Header"
 
-
 import {
     Card,
     CardContent,
@@ -13,15 +12,14 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import Content1 from "./content"
-import Footer from "../Footer"
+import Content4 from "./content"
 
 
-export default function Page1() {
+export default function Page4() {
     return (
     <div className="flex flex-col items-center h-screen">
         <Header></Header>
-        <Content1></Content1>
+        <Content4></Content4>
 </div>
     )
 }
