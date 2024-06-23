@@ -101,7 +101,7 @@ export default function Content3() {
         <main className="p-4 grid grid-cols-2 grid-rows-2 gap-3 w-full flex-grow">
             <Card>
                 <CardHeader>
-                    "Flex-direction" allows you to change the way the flex container goes. This also flips the directions for justify-content, and align-items. Flex-direction can be flex-row, flex-column, flex-reverse-row, and flex-reverse-column. You are given 2 squares, get them to their respective areas.
+                    "Flex-direction" allows you to change the way the flex container goes. This also flips the directions for justify-content, and align-items. Flex-direction can be row, column, reverse-row, and reverse-column. You are given 2 squares, get them to their respective areas.
                 </CardHeader>
             </Card>
             <Card className="row-start-2 bg-secondary p-2">
